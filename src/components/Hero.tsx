@@ -32,7 +32,7 @@ export default function Hero() {
         <div className="flex flex-col items-center lg:items-start w-full lg:w-[65%] pb-12 lg:pb-0 pt-0 lg:pt-0 relative">
           
           {/* MOBILE ONLY IMAGE (Top Faded) */}
-          <div className="flex lg:hidden relative w-full h-[45vh] sm:h-[55vh] justify-center items-end z-10 pointer-events-none -mb-[10%] [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+          <div className="flex lg:hidden relative w-full h-[45vh] sm:h-[55vh] justify-center items-end z-10 pointer-events-none -mb-[10%] [mask-image:linear-gradient(to_bottom,black_85%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_85%,transparent_100%)]">
             {/* Tooltip on mobile */}
             <motion.div 
               initial={{ opacity: 0, scale: 0 }}
