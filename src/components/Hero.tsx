@@ -29,7 +29,7 @@ export default function Hero() {
       <div className="max-w-[1296px] w-full mx-auto px-6 z-10 relative h-full flex items-center">
         
         {/* Text Content */}
-        <div className="flex flex-col z-20 w-full lg:w-[65%] pb-20 lg:pb-0">
+        <div className="flex flex-col z-20 w-full lg:w-[65%] pb-[35vh] sm:pb-[40vh] lg:pb-0 pt-10 lg:pt-0">
           <motion.h1 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -45,14 +45,14 @@ export default function Hero() {
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="h-[1px] w-full max-w-[500px] bg-dark/30 my-8 origin-left"
+            className="h-[1px] w-full max-w-[500px] bg-dark/30 my-6 lg:my-8 origin-left"
           />
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-dark max-w-xl text-base lg:text-[1.05rem] leading-[1.2] mb-10 font-medium"
+            className="text-dark max-w-xl text-base lg:text-[1.05rem] leading-[1.2] mb-8 lg:mb-10 font-medium"
           >
             Créatif et curieux, je combine design graphique, interfaces intuitives et web pour donner vie à des expériences visuelles cohérentes et engageantes.
           </motion.p>
@@ -61,13 +61,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-col sm:flex-row flex-wrap gap-4"
           >
-            <button className="group flex items-center gap-3 px-6 py-3 bg-dark text-white rounded-xl font-semibold hover:bg-primary transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            <button className="group flex justify-center items-center gap-3 px-6 py-3 bg-dark text-white rounded-xl font-semibold hover:bg-primary transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
               Télécharger mon CV 
               <Image src="/icons/file-down.svg" alt="Télécharger" width={20} height={20} className="w-5 h-5" />
             </button>
-            <button className="group flex items-center gap-3 px-6 py-3 border border-dark text-dark rounded-xl font-semibold hover:bg-primary hover:border-primary hover:text-white transition-all hover:-translate-y-0.5">
+            <button className="group flex justify-center items-center gap-3 px-6 py-3 border border-dark text-dark rounded-xl font-semibold hover:bg-primary hover:border-primary hover:text-white transition-all hover:-translate-y-0.5 bg-white/50 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none">
               Voir mes projets 
               <Image src="/icons/arrow-up-right.svg?v=2" alt="Flèche" width={20} height={20} className="w-5 h-5 group-hover:brightness-0 group-hover:invert transition-all" />
             </button>
@@ -80,7 +80,7 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.9, y: 50 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="absolute bottom-0 right-[-10%] sm:right-[-5%] lg:right-[calc(50vw-800px)] w-[90%] sm:w-[60%] lg:w-[850px] h-[55vh] lg:h-[880px] max-h-[90vh] flex justify-end items-end z-10 pointer-events-none"
+        className="absolute bottom-0 right-[-15%] sm:right-[-5%] lg:right-[calc(50vw-800px)] w-[110%] sm:w-[60%] lg:w-[850px] h-[45vh] lg:h-[880px] max-h-[90vh] flex justify-end items-end z-10 pointer-events-none"
       >
         {/* Tooltip bubble with Parallax & Mouse tracking */}
         <motion.div 
