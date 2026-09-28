@@ -29,37 +29,37 @@ export default function Hero() {
       <div className="max-w-[1296px] w-full mx-auto px-6 z-10 relative h-full flex items-center">
         
         {/* Text Content */}
-        <div className="flex flex-col items-center lg:items-start w-full lg:w-[65%] pb-12 lg:pb-0 pt-8 lg:pt-0 relative">
+        <div className="flex flex-col items-center lg:items-start w-full lg:w-[65%] pb-12 lg:pb-0 pt-0 lg:pt-0 relative">
+          
+          {/* MOBILE ONLY IMAGE (Top Faded) */}
+          <div className="flex lg:hidden relative w-full h-[45vh] sm:h-[55vh] justify-center items-end z-10 pointer-events-none -mb-[10%] [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+            {/* Tooltip on mobile */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute top-[15%] right-[5%] z-30 pointer-events-none"
+            >
+              <Image src="/images/mouse-name.svg" alt="Killian Lescure" width={120} height={40} className="w-24 sm:w-32 h-auto drop-shadow-xl" />
+            </motion.div>
+            <Image 
+              src="/images/moi-v2.webp" 
+              alt="Killian Lescure" 
+              width={850} 
+              height={880} 
+              className="object-contain object-bottom h-full w-auto"
+              priority
+            />
+          </div>
+
           <motion.h1 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-[17vw] sm:text-[6rem] lg:text-[8rem] xl:text-[176px] uppercase leading-[0.9] lg:leading-[0.82] tracking-tighter flex flex-col items-center lg:items-start w-full text-center lg:text-left"
+            className="text-[17vw] sm:text-[6rem] lg:text-[8rem] xl:text-[176px] uppercase leading-[0.9] lg:leading-[0.82] tracking-tighter flex flex-col items-center lg:items-start w-full text-center lg:text-left relative z-20"
           >
-            <span className="block text-primary font-[800] relative z-0">Creative</span>
-            
-            {/* MOBILE ONLY IMAGE (Sandwiched) */}
-            <div className="flex lg:hidden relative w-full h-[40vh] sm:h-[50vh] justify-center items-end -mt-[15%] -mb-[10%] z-10 pointer-events-none">
-              {/* Tooltip on mobile */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute top-[10%] right-[10%] z-30 pointer-events-none"
-              >
-                <Image src="/images/mouse-name.svg" alt="Killian Lescure" width={120} height={40} className="w-24 sm:w-32 h-auto drop-shadow-xl" />
-              </motion.div>
-              <Image 
-                src="/images/moi-v2.webp" 
-                alt="Killian Lescure" 
-                width={850} 
-                height={880} 
-                className="object-contain object-bottom h-full w-auto drop-shadow-2xl"
-                priority
-              />
-            </div>
-
-            <span className="block text-dark font-[900] relative z-20 lg:mt-0">Designer</span>
+            <span className="block text-primary font-[800]">Creative</span>
+            <span className="block text-dark font-[900]">Designer</span>
           </motion.h1>
           
           {/* Fine Separator Line */}
