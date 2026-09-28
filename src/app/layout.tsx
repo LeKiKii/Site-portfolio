@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   description: "Créatif et curieux, je combine design graphique, interfaces intuitives et web.",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+import Cursor from "@/components/Cursor";
+import ScrollToTop from "@/components/ScrollToTop";
+import Loader from "@/components/Loader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +33,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className={`${nexa.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${nexa.variable} font-sans antialiased`}>
+        <Loader />
+        <Cursor />
+        <SmoothScroll>
+          {children}
+          <ScrollToTop />
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

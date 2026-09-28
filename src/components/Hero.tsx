@@ -1,10 +1,31 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
 
 export default function Hero() {
+  const { scrollY } = useScroll();
+  const bubbleY = useTransform(scrollY, [0, 800], [0, -150]);
+  const photoY = useTransform(scrollY, [0, 800], [0, 80]); // Moves down slowly
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  const bubbleMouseX = useTransform(smoothMouseX, [-0.5, 0.5], [-30, 30]);
+  const bubbleMouseY = useTransform(smoothMouseY, [-0.5, 0.5], [-30, 30]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { innerWidth, innerHeight } = window;
+    const x = (e.clientX / innerWidth) - 0.5;
+    const y = (e.clientY / innerHeight) - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden pt-32 pb-0 text-dark">
+    <section onMouseMove={handleMouseMove} className="min-h-screen flex items-center relative overflow-hidden pt-32 pb-0 text-dark">
       <div className="max-w-[1296px] w-full mx-auto px-6 z-10 relative h-full flex items-center">
         
         {/* Text Content */}
@@ -31,7 +52,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-dark max-w-xl text-base lg:text-[1.05rem] leading-relaxed mb-10 font-medium"
+            className="text-dark max-w-xl text-base lg:text-[1.05rem] leading-[1.2] mb-10 font-medium"
           >
             Créatif et curieux, je combine design graphique, interfaces intuitives et web pour donner vie à des expériences visuelles cohérentes et engageantes.
           </motion.p>
@@ -42,13 +63,13 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-wrap gap-4"
           >
-            <button className="flex items-center gap-3 px-6 py-3 bg-dark text-white rounded-xl font-semibold hover:bg-dark/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            <button className="group flex items-center gap-3 px-6 py-3 bg-dark text-white rounded-xl font-semibold hover:bg-primary transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
               Télécharger mon CV 
-              <Image src="/icons/file-down.svg" alt="Télécharger" width={20} height={20} className="w-5 h-5 invert" />
+              <Image src="/icons/file-down.svg" alt="Télécharger" width={20} height={20} className="w-5 h-5" />
             </button>
-            <button className="flex items-center gap-3 px-6 py-3 border border-dark text-dark rounded-xl font-semibold hover:bg-dark/5 transition-all hover:-translate-y-0.5">
+            <button className="group flex items-center gap-3 px-6 py-3 border border-dark text-dark rounded-xl font-semibold hover:bg-primary hover:border-primary hover:text-white transition-all hover:-translate-y-0.5">
               Voir mes projets 
-              <Image src="/icons/arrow-up-right.svg" alt="Flèche" width={20} height={20} className="w-5 h-5" />
+              <Image src="/icons/arrow-up-right.svg?v=2" alt="Flèche" width={20} height={20} className="w-5 h-5 group-hover:brightness-0 group-hover:invert transition-all" />
             </button>
           </motion.div>
         </div>
@@ -59,23 +80,37 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.9, y: 50 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="absolute bottom-0 right-[-10%] sm:right-[-5%] lg:right-[calc(50vw-680px)] w-[90%] sm:w-[60%] lg:w-[790px] h-[55vh] lg:h-[826px] max-h-[85vh] flex justify-end items-end z-10 pointer-events-none"
+        className="absolute bottom-0 right-[-10%] sm:right-[-5%] lg:right-[calc(50vw-800px)] w-[90%] sm:w-[60%] lg:w-[850px] h-[55vh] lg:h-[880px] max-h-[90vh] flex justify-end items-end z-10 pointer-events-none"
       >
-        {/* Tooltip bubble */}
-        <div className="absolute top-[10%] lg:top-[15%] right-[20%] lg:right-[40%] bg-primary text-white px-5 py-2 rounded-2xl font-bold text-sm shadow-xl hidden sm:block z-30">
-          Killian Lescure
-          {/* pointer */}
-          <div className="absolute -bottom-2 left-6 w-5 h-5 bg-primary rotate-[60deg] skew-x-12 rounded-sm"></div>
-        </div>
+        {/* Tooltip bubble with Parallax & Mouse tracking */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          style={{ y: bubbleY }}
+          className="absolute top-[2%] lg:top-[3%] right-[10%] lg:right-[22%] z-30 hidden sm:block pointer-events-none"
+        >
+          <motion.div style={{ x: bubbleMouseX, y: bubbleMouseY }}>
+            <Image 
+              src="/images/mouse-name.svg" 
+              alt="Killian Lescure" 
+              width={180} 
+              height={60} 
+              className="w-32 lg:w-40 h-auto drop-shadow-xl"
+            />
+          </motion.div>
+        </motion.div>
         
-        <Image 
-          src="/images/moi.webp" 
-          alt="Killian Lescure" 
-          width={790} 
-          height={826} 
-          className="object-contain object-right-bottom h-full w-auto drop-shadow-2xl"
-          priority
-        />
+        <motion.div style={{ y: photoY }} className="h-full w-auto">
+          <Image 
+            src="/images/moi-v2.webp" 
+            alt="Killian Lescure" 
+            width={850} 
+            height={880} 
+            className="object-contain object-right-bottom h-full w-auto drop-shadow-2xl"
+            priority
+          />
+        </motion.div>
       </motion.div>
     </section>
   );

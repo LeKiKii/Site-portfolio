@@ -12,6 +12,18 @@
   --font-mono: var(--font-geist-mono);
   --color-primary: #376EFE;
   --color-dark: #0F1F4A;
+  --animate-marquee-left: marquee-left 80s linear infinite;
+  --animate-marquee-right: marquee-right 80s linear infinite;
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,4 +40,9 @@ body {
   background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-nexa), sans-serif !important;
+}
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
