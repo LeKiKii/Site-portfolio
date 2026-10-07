@@ -30,18 +30,7 @@ export default function Productions() {
   return (
     <section id="portfolio" className="relative py-24 lg:py-32 text-dark overflow-hidden">
       
-      {/* Background Gradient & Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#EEF3FF] to-[#DCE6FF] -z-20" />
-      
-      {/* Static Pattern */}
-      <div 
-        className="absolute inset-0 opacity-40 -z-10 mix-blend-multiply" 
-        style={{ 
-          backgroundImage: "url('/images/patern.svg')", 
-          backgroundRepeat: "repeat", 
-          backgroundSize: "60px",
-        }} 
-      />
+
 
       <div className="max-w-[1296px] w-full mx-auto px-6 relative z-10">
         
